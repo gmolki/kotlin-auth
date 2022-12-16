@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  kotlin-auth-mongodb:
+    image: mongo:6
+    container_name: kotlin-auth-mongodb
+    environment:
+      MONGO_INITDB_DATABASE: kotlin-auth
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
