@@ -27,7 +27,7 @@ import javax.validation.Valid
 
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1/auth")
 class AuthController {
     @Autowired
     private lateinit var authenticationManager: AuthenticationManager
@@ -43,6 +43,23 @@ class AuthController {
 
     @Autowired
     private lateinit var jwtUtils: JwtUtils
+
+    // see: https://www.rfc-editor.org/rfc/rfc9110.html#section-11
+    @PostMapping("/tokens")
+    fun tokens() {
+//        TODO: implement following convention - https://datatracker.ietf.org/doc/html/rfc6749#section-3.2
+//        It should receive grant_type in request body in order to know which action to execute
+//        e.g. `grant_type=refresh_token` may refresh the JWT pair for the user generating new access and refresh JWTs
+    }
+
+    @PostMapping("/register")
+    fun register() {
+//        TODO: implement following convention - https://datatracker.ietf.org/doc/html/rfc6749#section-2
+//        Expect to receive header: Authorization: Basic $(credentials)
+//        e.g. `Authorization: Basic czZCaGRSa3F0Mzo3RmpmcDBaQnIxS3REUmJuZlZkbUl3`
+    }
+
+
 
     @PostMapping("/signin")
     fun authenticateUser(@Valid @RequestBody loginRequest: LoginRequest): ResponseEntity<Any?> {
